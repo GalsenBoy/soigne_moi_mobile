@@ -10,7 +10,7 @@ export default function Login() {
   const medecinLogin = async () => {
     try {
       const response = await fetch(
-        "https://cbc0-2001-861-6680-24b0-a827-38c5-e5fb-a5f7.ngrok-free.app/auth/signin/medecin",
+        "https://913a-2001-861-6680-24b0-a827-38c5-e5fb-a5f7.ngrok-free.app/auth/signin/medecin",
         {
           method: "POST",
           headers: {
