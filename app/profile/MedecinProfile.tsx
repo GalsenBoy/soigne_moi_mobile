@@ -3,12 +3,12 @@ import { Text, View, StyleSheet, Button } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Medecin } from "../../types/medecin.type";
 import { routes } from "../../routes";
-import { router } from "expo-router";
+import { Link, router } from "expo-router";
 import SejourType from "../../types/sejour.type";
 
 export default function MedecinProfile() {
   const [matricule, setMatricule] = useState<Medecin>();
-  const [sejour, setSejour] = useState<SejourType[]>();
+  const [sejours, setSejour] = useState<SejourType[]>();
   const getMedecinProfile = async () => {
     const accessToken = await AsyncStorage.getItem("accessToken");
     if (!accessToken) {
@@ -80,13 +80,15 @@ export default function MedecinProfile() {
       <View style={styles.sejourContainer}>
         <Text style={styles.list}>Liste des séjours</Text>
         <View>
-          {sejour.map((sejour) => (
+          {sejours?.map((sejour) => (
             <View key={sejour.id} style={styles.sejourItem}>
               <Text>Date d'entrée: {sejour.dateEntree}</Text>
               <Text>Date de sortie: {sejour.dateSortie}</Text>
               <Text>Motif: {sejour.motif}</Text>
               <View style={styles.btnContainer}>
-                <Button title="Prescrire un avis" />
+                <Link style={styles.link} href={`/profile/avis/${sejour.id}`}>
+                  Prescrire un avis
+                </Link>
               </View>
             </View>
           ))}
@@ -136,5 +138,10 @@ const styles = StyleSheet.create({
   list: {
     fontSize: 20,
     marginBottom: 10,
+  },
+  link: {
+    color: "blue",
+    fontSize: 16,
+    fontWeight: "bold",
   },
 });
