@@ -86,9 +86,13 @@ export default function MedecinProfile() {
               <Text>Date de sortie: {sejour.dateSortie}</Text>
               <Text>Motif: {sejour.motif}</Text>
               <View style={styles.btnContainer}>
-                <Link style={styles.link} href={`/profile/avis/${sejour.id}`}>
-                  Prescrire un avis
-                </Link>
+                {sejour.avis == "" ? (
+                  <Link style={styles.link} href={`/profile/avis/${sejour.id}`}>
+                    Prescrire un avis
+                  </Link>
+                ) : (
+                  <Text>Avis déjà prescrit</Text>
+                )}
               </View>
             </View>
           ))}

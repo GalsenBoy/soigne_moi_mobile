@@ -1,5 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useLocalSearchParams } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
 import { Button, StyleSheet, Text, TextInput, View } from "react-native";
 import { routes } from "../../../routes";
 import { useEffect, useState } from "react";
@@ -42,10 +42,6 @@ export default function Avis() {
     control,
     name: "medecament",
   });
-  // const { fields, append, remove } = useFieldArray({
-  //   control,
-  //   name: "prescription",
-  // });
   const getSejour = async () => {
     try {
       const accessToken = await AsyncStorage.getItem("accessToken");
@@ -91,6 +87,7 @@ export default function Avis() {
       console.log("====================================");
       console.log(data);
       console.log("====================================");
+      router.push("/profile");
     } catch (error) {
       console.log(error);
     }
@@ -176,10 +173,12 @@ export default function Avis() {
         </View>
       ))}
 
-      <Button
-        title="Ajouter un médicament"
-        onPress={() => append({ medicament: "", posologie: "" })}
-      />
+      <View style={styles.addMedicament}>
+        <Button
+          title="Ajouter un médicament"
+          onPress={() => append({ medicament: "", posologie: "" })}
+        />
+      </View>
       <Button title="Soumettre" onPress={handleSubmit(onSubmit)} />
     </View>
   );
@@ -215,7 +214,7 @@ const styles = StyleSheet.create({
   },
   input: {
     borderWidth: 1,
-    borderColor: "gray",
+    borderColor: "white",
     paddingHorizontal: 10,
     paddingVertical: 5,
     marginBottom: 10,
@@ -227,5 +226,8 @@ const styles = StyleSheet.create({
   errorText: {
     color: "red",
     marginBottom: 10,
+  },
+  addMedicament: {
+    marginBottom: 20,
   },
 });
