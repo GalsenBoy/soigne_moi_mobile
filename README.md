@@ -12,6 +12,8 @@ $ npm i
 $ npx expo start
 ```
 
+<p>Scanner le qr code générer sur votre téléphone ou si vous utilisez android studio suivre les instruction donées sur le terminal pour l'utilisation d'un émulateur android ou ios</p>
+
 # Utilisation du serveur backend
 <p>Pour utiliser le backend de nest avec expo veuillez installer ngrok </p>
 
