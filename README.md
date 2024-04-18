@@ -28,9 +28,9 @@ $ brew install ngrok/ngrok/ngrok
 $ sudo tar xvzf ~/Downloads/ngrok-v3-stable-linux-amd64.tgz -C /usr/local/bin 
 ```
 
-# Ensute lancer la commande suivante depuis votre terminale
+# Ensuite lancer la commande suivante depuis votre terminale
 ```bash
 $ ngrok htpp 8000
 ```
-<p>Ceci vous générera une adresse que vous allez remplace dans le fichier routes.ts depuis la racine</p>
+<p>Ceci vous générera une adresse que vous allez remplacer dans le fichier routes.ts depuis la racine du projet</p>
 
