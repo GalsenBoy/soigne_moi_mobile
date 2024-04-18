@@ -1,5 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { router, useLocalSearchParams } from "expo-router";
+import { Link, router, useLocalSearchParams } from "expo-router";
 import { Button, StyleSheet, Text, TextInput, View } from "react-native";
 import { routes } from "../../../routes";
 import { useEffect, useState } from "react";
@@ -87,7 +87,7 @@ export default function Avis() {
       console.log("====================================");
       console.log(data);
       console.log("====================================");
-      router.push("/profile");
+      router.push("/profile/MedecinProfile");
     } catch (error) {
       console.log(error);
     }
@@ -98,6 +98,9 @@ export default function Avis() {
   }, []);
   return (
     <View style={styles.container}>
+      <Link style={styles.retour} href="/profile/MedecinProfile">
+        Retour
+      </Link>
       {sejour ? (
         <View>
           <Text style={styles.motif}>Motif du Sejour:</Text>
@@ -202,6 +205,13 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
     marginVertical: 20,
+    textDecorationLine: "underline",
+  },
+  retour: {
+    marginVertical: 20,
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "white",
     textDecorationLine: "underline",
   },
   title: {
