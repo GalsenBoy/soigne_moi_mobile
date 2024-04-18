@@ -8,6 +8,7 @@ import { routes } from "../routes";
 
 export default function Login() {
   const [matricule, setMatricule] = useState("");
+  const [error, setError] = useState("");
 
   const medecinLogin = async () => {
     try {
@@ -29,6 +30,7 @@ export default function Login() {
       console.log("====================================");
       router.push("/profile/MedecinProfile");
     } catch (error) {
+      setError(error.message);
       console.error(error);
     }
   };
@@ -43,6 +45,7 @@ export default function Login() {
       />
       <Button title="SE CONNECTER" onPress={medecinLogin} />
       {/* <Button title="SE CONNECTER" onPress={medecinLogin} /> */}
+      {error && <Text style={{ color: "red" }}>{error}</Text>}
     </View>
   );
 }
