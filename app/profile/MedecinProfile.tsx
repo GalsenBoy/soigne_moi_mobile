@@ -30,6 +30,8 @@ export default function MedecinProfile() {
     setMatricule(data);
   };
 
+  const hours = new Date().getHours() >= 10 && new Date().getHours() < 18;
+
   const handleSejourMedecin = async () => {
     try {
       const accessToken = await AsyncStorage.getItem("accessToken");
@@ -80,22 +82,26 @@ export default function MedecinProfile() {
       <View style={styles.sejourContainer}>
         <Text style={styles.list}>Liste des séjours</Text>
         <View>
-          {sejours?.map((sejour) => (
-            <View key={sejour.id} style={styles.sejourItem}>
-              <Text>Date d'entrée: {sejour.dateEntree}</Text>
-              <Text>Date de sortie: {sejour.dateSortie}</Text>
-              <Text>Motif: {sejour.motif}</Text>
-              <View style={styles.btnContainer}>
-                {sejour.avis == "" ? (
-                  <Link style={styles.link} href={`/profile/avis/${sejour.id}`}>
-                    Prescrire un avis
-                  </Link>
-                ) : (
-                  <Text>Avis déjà prescrit</Text>
-                )}
+          {hours &&
+            sejours?.map((sejour) => (
+              <View key={sejour.id} style={styles.sejourItem}>
+                <Text>Date d'entrée: {sejour.dateEntree}</Text>
+                <Text>Date de sortie: {sejour.dateSortie}</Text>
+                <Text>Motif: {sejour.motif}</Text>
+                <View style={styles.btnContainer}>
+                  {sejour.avis == "" ? (
+                    <Link
+                      style={styles.link}
+                      href={`/profile/avis/${sejour.id}`}
+                    >
+                      Prescrire un avis
+                    </Link>
+                  ) : (
+                    <Text>Avis déjà prescrit</Text>
+                  )}
+                </View>
               </View>
-            </View>
-          ))}
+            ))}
         </View>
       </View>
     </View>

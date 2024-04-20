@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import { Text, View, TextInput, Button, StyleSheet } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Link, router } from "expo-router";
+import { router } from "expo-router";
 import { routes } from "../routes";
-
-// import { AsyncStorage } from "react-native";
 
 export default function Login() {
   const [matricule, setMatricule] = useState("");
@@ -25,9 +23,6 @@ export default function Login() {
       }
       const data = await response.json();
       await AsyncStorage.setItem("accessToken", data.access_token);
-      console.log("====================================");
-      console.log(data.access_token);
-      console.log("====================================");
       router.push("/profile/MedecinProfile");
     } catch (error) {
       setError(error.message);
