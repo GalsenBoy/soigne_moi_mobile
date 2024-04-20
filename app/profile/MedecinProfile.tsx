@@ -82,6 +82,12 @@ export default function MedecinProfile() {
       <View style={styles.sejourContainer}>
         <Text style={styles.list}>Liste des séjours</Text>
         <View>
+          {!hours && (
+            <Text>
+              Vous ne pouvez pas prescrire d'avis en dehors des heures de
+              travail
+            </Text>
+          )}
           {hours &&
             sejours?.map((sejour) => (
               <View key={sejour.id} style={styles.sejourItem}>
